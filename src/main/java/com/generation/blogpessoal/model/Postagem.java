@@ -6,12 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity //indica que é um modelo
 @Table(name = "tb_postagens") //equivalente ao create table do MySQL
@@ -31,8 +34,11 @@ public class Postagem {
 	
 	@UpdateTimestamp //pega a data direto do computador, muda a data toda vez que for criada ou atualizada a postagens, se quiser que seja só na criação utilizar o CreateTimestamp
 	private LocalDateTime data;
-
 	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema; //Esse objeto cria a relação com a classe/tabela(chave estrangeira) Tema
+
 	public Long getId() {
 		return id;
 	}
@@ -65,4 +71,11 @@ public class Postagem {
 		this.data = data;
 	}
 	
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
 }
