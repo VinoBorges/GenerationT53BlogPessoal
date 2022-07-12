@@ -24,6 +24,9 @@ public class UsuarioLogin {
 
 	private String token;
 	
+	private String tipo;
+	
+	
 	// Primeiro método Construtor
 
 		public UsuarioLogin(Long id, String nome, String usuario, String senha, String foto, String token) {
@@ -86,5 +89,12 @@ public class UsuarioLogin {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	
 }
